@@ -13,7 +13,7 @@ class BinaryTree:
         # Merupakan kepala paling atas
         self.root = None
 
-    def insert(self, value):
+    def insert(self, value, text, choice, nextValue):
         #check if root is empty
         if self.root == None :
             self.root = Node
@@ -56,3 +56,10 @@ class BinaryTree:
             self.right.printIn()
 
 dialogueTree = BinaryTree()
+# Root 
+text = ['Wah ada dua jalan aku harus pilih yang mana ya?']
+choice = ['Jalan kiri', 'Jalan kanan']
+nextVal = [6,  63]
+dialogueTree.insert(7,text,choice,nextVal)
+
+dialogueTree.printIn()
