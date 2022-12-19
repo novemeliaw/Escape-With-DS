@@ -128,8 +128,6 @@ while (status):
             is_clicked = True
             click_counter += 1
             click_sound.play()
-
-      ...
     #check starting position
     if start == True:
         screen.blit(load_bg, (0, 0))
