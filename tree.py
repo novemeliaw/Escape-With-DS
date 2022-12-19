@@ -111,11 +111,11 @@ class BinaryTree:
 
 dialogueTree = BinaryTree()
 # Root
-asset = ['persimpangan jalan.avif']
+asset = ['persimpangan jalan.jpg']
 text = ['Wah ada dua jalan aku harus pilih yang mana ya?']
 choice = ['Jalan kiri', 'Jalan kanan']
 nextVal = [66,  194]
-dialogueTree.insert(130,text,choice,nextVal)
+dialogueTree.insert(130,text,choice,nextVal, asset)
 
 #Binary Tree 66
 asset = ['hutan siang.jpg', 'prince2.png', 'ds scratch 2.png']
@@ -185,7 +185,7 @@ asset = ['prince2.png']
 text = ['Ternyata benar dia ada di sini.', 'Untung saja dia belum sempat masuk. Ayo tangkap dia!', 'Tidakkk!!!']
 choice = []
 nextVal = []
-dialogueTree.insert(11,text,choice,nextVal, asset)
+dialogueTree.insert(16,text,choice,nextVal, asset)
 
 #Binary Tree 26
 asset = ['sungai.png', 'prince2.png']
@@ -229,12 +229,12 @@ choice = []
 nextVal = []
 dialogueTree.insert(28,text,choice,nextVal, asset)
 
-#Binary Tree 53
+#Binary Tree 32
 asset = ['sungai.png', 'prince2.png']
-text = ['Ah kenapa membuat api unggun begitu sulit', '']
+text = ['Ternyata benar dia ada di sini.', 'Untung saja dia belum sempat masuk. Ayo tangkap dia!', 'Tidakkk!!!']
 choice = []
 nextVal = []
-dialogueTree.insert(53,text,choice,nextVal, asset)
+dialogueTree.insert(32,text,choice,nextVal, asset)
 
 #Binary Tree 50
 asset = ['rumah kosong.jpg', 'prince2.png', 'hutan pagi.jpg', 'blackpanther.jpg']
@@ -242,6 +242,20 @@ text = ['Ayo cari pangeran itu, dia pasti tidak jauh dari sini.', 'Kita sudah me
 choice = ['Min', 'Max']
 nextVal = [42,  58]
 dialogueTree.insert(50,text,choice,nextVal, asset)
+
+#Binary Tree 58
+asset = ['prince2.png']
+text = []
+choice = ['Circular', 'Double']
+nextVal = [54, 62]
+dialogueTree.insert(58,text,choice,nextVal, asset)
+
+#Binary Tree 54
+asset = ['prince2.png']
+text = ['Wah, aku mendapatkan digit kedua..tetapi aku terluka cukup parah, aku harus segera mengobatinya.', 'Tanaman obat yang mana ya yang benar?']
+choice = ['dequeue', 'enqueue']
+nextVal = [52, 56]
+dialogueTree.insert(54,text,choice,nextVal, asset)
 
 #Binary Tree 42
 asset = ['prince2.png', 'hutan pagi.jpg', 'blackpanther.jpg']
@@ -292,26 +306,19 @@ choice = []
 nextVal = []
 dialogueTree.insert(48,text,choice,nextVal, asset)
 
-#Binary Tree 58
-asset = ['prince2.png']
-text = []
-choice = ['Circular', 'Double']
-nextVal = [54, 62]
-dialogueTree.insert(58,text,choice,nextVal, asset)
-
-#Binary Tree 54
-asset = ['prince2.png']
-text = ['Wah, aku mendapatkan digit kedua..tetapi aku terluka cukup parah, aku harus segera mengobatinya.', 'Tanaman obat yang mana ya yang benar?']
-choice = ['dequeue', 'enqueue']
-nextVal = [52, 56]
-dialogueTree.insert(54,text,choice,nextVal, asset)
-
 #Binary Tree 52
 asset = ['prince2.png']
 text = ['Hebat sekali tanaman obat ini! Sekarang aku harus mencari kerajaanku.']
 choice = ['dequeue', 'enqueue']
 nextVal = [51, 53]
 dialogueTree.insert(52,text,choice,nextVal, asset)
+
+#Binary Tree 53
+asset = ['sungai.png', 'prince2.png']
+text = ['Ah kenapa membuat api unggun begitu sulit']
+choice = []
+nextVal = []
+dialogueTree.insert(53,text,choice,nextVal, asset)
 
 #Binary Tree 51
 asset = ['prince2.png']

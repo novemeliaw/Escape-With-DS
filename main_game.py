@@ -132,7 +132,7 @@ while (status):
 
 
    if toChoose == True:
-        if 
+        #if:
         # check if node = none (end)
 
         # else load text
