@@ -22,7 +22,7 @@ pygame.display.set_icon(icon)
 # Font
 textfont = pygame.font.SysFont  ("monospace", 50)
 textbtn = pygame.font.SysFont ("monospace", 20)
-# textnarasi = pygame.font.SysFont ("monospace", 5)
+textnarasi = pygame.font.SysFont ("monospace", 20)
 class textBox:
   def draw_text(self, text):
     text_show = textfont.render(text, 1, (255,255,255))
@@ -33,9 +33,9 @@ class textBox:
     screen.blit(text_show, text_rect)
 
   def draw_narasi(self, text):
-    text_show = textfont.render(text, 1, (255,255,255))
+    text_show = textnarasi.render(text, 1, (255,255,255))
     text_rect = text_show.get_rect()
-    text_rect.center = (s_width / 2, s_height / 2 - 5)
+    text_rect.center = (s_width / 2, s_height / 2 - 30)
 
     #show text
     screen.blit(text_show, text_rect)
@@ -153,12 +153,13 @@ while (status):
 
     # start = False
     if toChoose == True:
-        narasi = tree.gameData[0]
+        narasi = tree.gameData[0][counter]
         print(narasi)
         for i in range (len(tree.gameData[0])):
-              narasi = tree.gameData[0][i]
-              # print(narasi)
-              dialog_box.draw_narasi(narasi)
+              text = tree.gameData[0][i]
+              # counter += 
+              print(narasi)
+              dialog_box.draw_narasi(text)
         # if counter != len(tree.gameData[0])  and toChoose == False:
         #       text = tree.gameData[0][counter]
         #       diaText = textfont.render(text,1,(255,255,255))
@@ -175,7 +176,6 @@ while (status):
         # else load text
         else:
           # print(is_clicked)
-          
             choiceBtn = Button(s_width / 2 - 300, s_height / 2 - 3, tree.gameData[1][0])
             choiceBtn2 = Button(s_width / 2, s_height / 2, tree.gameData[1][1])
             
