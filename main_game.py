@@ -21,6 +21,7 @@ pygame.display.set_icon(icon)
 
 # Font
 textfont = pygame.font.SysFont  ("monospace", 50)
+textbtn = pygame.font.SysFont ("monospace", 20)
 class textBox:
   def draw_text(self, text):
     text_show = textfont.render(text, 1, (255,255,255))
@@ -92,9 +93,9 @@ class Button:
         pygame.draw.rect(screen, self.btn, btn_rect)
 
       # insert text
-      text_btn = textfont.render(self.text, 1, (0, 0, 0))
+      text_btn = textbtn.render(self.text, 1, (0, 0, 0))
       text_len = text_btn.get_width()
-      screen.blit(text_btn, ((self.x + int(self.width/2) - int(text_len / 2), self.y + 5)))
+      screen.blit(text_btn, ((self.x + int(self.width/2) - int(text_len / 2), self.y + 2)))
       return action
 
 
@@ -107,46 +108,103 @@ load_bg = pygame.image.load('Assets SD/Background/rumah kosong pertama diculik.j
 
 start = True
 toChoose = False
-narasi = ['Terdapat seorang laki-laki tergeletak di lantai sebuah rumah kosong.', 'Ia pun terbangun.']
+click_counter = 0
+counter = 0
+narasi = ['Terdapat seorang', 'laki-laki dewasa', ' tergeletak di', ' lantai sebuah', '  rumah kosong', 'Ia pun terbangun.', ' Dimanakah ini? ', 'Kemarin bukannya ',' aku… ', 'Gawat!','aku harus mencari', '  jalan pulang']
 # running status
 status = True
-while (status):
-   screen.fill((0,0,0))
-        #bgm here
+# click_sound = pygame.mixer.Sound("Audio Asset\click.wav")
+setBGM("Audio Asset\Eerie_BGM.mp3")
+dialog_box = textBox()
 
-   for i in pygame.event.get():
+while (status):
+    screen.fill((0,0,0))
+
+    for i in pygame.event.get():
         if i.type == pygame.QUIT:
           status = False
 
         if i.type == pygame.MOUSEBUTTONDOWN:
             is_clicked = True
-            #load sfx click
-            # pygame.mixer.music.load("Audio Asset\click.wav")
-            # pygame.mixer.music.play()
-            #check 
-   #starting position
-   if start == True:
+            click_counter += 1
+            click_sound.play()
+    
+    #check starting position
+    if start == True:
+        screen.blit(load_bg, (0, 0))
+        try:
+          dialog_box.draw_text(narasi[click_counter])
+        except IndexError:
+          toChoose = True
+# while (status):
+#    screen.fill((0,0,0))
+#         #bgm here
+#    screen.blit(load_bg, (0, 0))
+
+#    is_clicked = False 
+#    for i in pygame.event.get():
+#         if i.type == pygame.QUIT:
+#           status = False
+
+#         if i.type == pygame.MOUSEBUTTONDOWN:
+#             is_clicked = True
+#             click_counter += 1
+#             print(click_counter)
+          
+#             # load sfx click
+#             pygame.mixer.music.load("Audio Asset\click.wav")
+#             pygame.mixer.music.play()
+#             #check 
+#    #starting position
+#    if start == True:
+#         # start = True
+#      if click_counter != len(narasi)-2:
+#       text = textfont.render(narasi[click_counter], 1, (255,255,255))
+#       screen.blit(text, (130,200))
+
+#      if click_counter == len(narasi)-2:
+#       toChoose = True
+#       click_counter = 0
+
+  #  awal = False
+  #  toChoose = True
     #load narasi awal
-    screen.blit(load_bg, (0, 0))
-    for i in range (len(narasi)):
-      text = textfont.render(narasi[i], 1, (255,255,255))
-      screen.blit(text, (130,200))
-      # if is_clicked == True :
-      #   text = textfont.render(narasi[i+1], 1, (255,255,255))
-      #   screen.blit(text, (130,200))
-
-  #  if toChoose == True:
-  #       if 
+    
+      
+    # start = False
+    if toChoose == True:
+        if counter != len(tree.gameData[0])  and toChoose == False:
+              text = tree.gameData[0][counter]
+              diaText = textfont.render(text,1,(255,255,255))
+              counter += 1
+              screen.blit(diaText, (130,200))
+        else:
+              counter = 0
+              toChoose = True
         # check if node = none (end)
-
-        # else load text
-
-       
+        if tree.gameData[1][0] == None:
+          text = "Restart?"
+          textBox().draw_text(text)
+         # else load text
+        else:
+          choiceBtn = Button(s_width / 2 - 300, s_height / 2 - 5, tree.gameData[1][0])
+          choiceBtn2 = Button(s_width / 2, s_height / 2, tree.gameData[1][1])
+          if choiceBtn.draw_btn():
+            tree = dialogueTree.search(tree.nextVal[0])
+            text = ''
+            load_bg = pygame.image.load(tree.gameData[3][0])
+            toChoose = False
+            start = True
+          if choiceBtn2.draw_btn():
+            tree = dialogueTree.search(tree.nextVal[1])
+            newText = ''
+            load_bg = pygame.image.load(tree.gameData[3][0])
+            toChoose = False
+            awal = True       
         # then quitting the pygame
         # and program both.
-
-       
-   pygame.display.update()
+      
+    pygame.display.update()
 
  
 # deactivates the pygame library
