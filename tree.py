@@ -132,7 +132,7 @@ nextVal = [18,  50]
 dialogueTree.insert(34,text,choice,nextVal, asset)
 
 #Binary Tree 18
-asset = ['Background/dalam rumah  kosong.png', 'Character/prince2.png', 'Character/villain1.png', 'Character/villain2.png']
+asset = ['Background/dalam rumah kosong.png', 'Character/prince2.png', 'Character/villain1.png', 'Character/villain2.png']
 text = ['Ayo cari pangeran itu, dia pasti tidak jauh dari sini.', 'Kita sudah mencari semalaman dan tidak menemukannya. Apa mungkin dia sudah berhasil kembali ke kerajaannya?', 'Tidak mungkin! Cepat cari lagi, kita harus menemukannya.', 'Itu adalah orang-orang yang menculikku! Aku harus kabur dari sini.', 'Aku harus menyeberangi sungai ini. Bagaimana caraku untuk menyeberang?']
 choice = ['Root', 'Leaf']
 nextVal = [10,  26]
@@ -188,14 +188,14 @@ nextVal = [None, None]
 dialogueTree.insert(16,text,choice,nextVal, asset)
 
 #Binary Tree 26
-asset = ['sungai.png', 'Character/prince2.png']
+asset = ['Background/sungai.jpg', 'Character/prince2.png']
 text = ['Air sungai ini sangat dingin! Tetapi sepertinya aku tidak punya pilihan lain selain berenang.']
 choice = ['Majemuk', 'Sederhana']
 nextVal = [22,  30]
 dialogueTree.insert(26,text,choice,nextVal, asset)
 
 #Binary Tree 22
-asset = ['sungai.png', 'Character/prince2.png']
+asset = ['Background/sungai.jpg', 'Character/prince2.png']
 text = ['Tidak sia-sia aku berenang ke sini, ternyata aku mendapatkan digit terakhir yang kuperlukan! Tetapi aku sangat kedinginan.', 'Ah, aku akan menghangatkan diri sebentar dengan menyalakan api unggun.', ]
 choice = ['folding', 'carry']
 nextVal = [20,  24]
@@ -216,7 +216,7 @@ nextVal = [None, None]
 dialogueTree.insert(24,text,choice,nextVal, asset)
 
 #Binary Tree 30
-asset = ['sungai.png', 'Character/prince2.png']
+asset = ['Background/sungai.jpg', 'Character/prince2.png']
 text = ['Tidak sia-sia aku berenang ke sini, ternyata aku mendapatkan digit terakhir yang kuperlukan! Tetapi aku sangat kedinginan..', 'Ah, aku akan menghangatkan diri sebentar dengan menyalakan api unggun.']
 choice = ['Inorder', 'Postorder']
 nextVal = [28,32]
@@ -489,14 +489,14 @@ nextVal = [102, 110]
 dialogueTree.insert(106,text,choice,nextVal, asset)
 
 #Binary Tree 102
-asset = ['Character/prince2.png', 'sungai.png']
+asset = ['Character/prince2.png', 'sungai.jpg']
 text = ['Astaga betapa beruntungnya aku menemukan kayu dan korek api ditempat ini, aku harus segera menghangatkan diri.']
 choice = ['1', '2']
 nextVal = [100,104]
 dialogueTree.insert(102,text,choice,nextVal, asset)
 
 #Binary Tree 110
-asset = ['Character/prince2.png', 'sungai.png']
+asset = ['Character/prince2.png', 'sungai.jpg']
 text = ['Oh Tuhan, jika ini kehendakmu aku akan berserah mati kedinginan di tempat ini.']
 choice = []
 nextVal = [None, None]
@@ -576,7 +576,7 @@ dialogueTree.insert(242,text,choice,nextVal, asset)
 asset = ['Background/semak-semak.jpg', 'Character/prince2.png', 'ds scratch 2.png']
 text = ['Bagaimana kamu bisa terikat disini?', 'Siapa kamu, tolong lepaskan aku.', 'Nanti aku akan memperkenalkan diriku, sekarang aku akan membantumu melepaskan diri dari ikatan ini.', 'Halo Halo Loha, aku DS, yang akan menemani mu di perjalanan ini.', 'Kamu kenapa bisa ada disini?', 'Aku diciptakan untuk membantu orang” yang tersesat di hutan ini.', 'Baiklah.']
 choice = ['Queue', 'Stack']
-nextVal = [34]
+nextVal = [None, None]
 dialogueTree.insert(234,text,choice,nextVal, asset)
 
 #Binary Tree 250
