@@ -83,7 +83,7 @@ class Button:
       btn_rect = Rect(self.x, self.y, self.width, self.height)
 
       if btn_rect.collidepoint(pos):
-        if pygame.mouse.get_pressed()[0] == 1:
+        if pygame.mouse.get_pressed()[0] and pygame.mouse.get_pos():
           is_clicked = True
           pygame.draw.rect(screen, self.click_btn, btn_rect)
         else : 
@@ -114,7 +114,7 @@ narasi = ['Terdapat seorang', 'laki-laki dewasa', ' tergeletak di', ' lantai seb
 # running status
 status = True
 # click_sound = pygame.mixer.Sound("Audio Asset\click.wav")
-setBGM("Audio Asset\Eerie_BGM.mp3")
+# setBGM("Audio Asset\Eerie_BGM.mp3")
 dialog_box = textBox()
 
 while (status):
@@ -127,9 +127,8 @@ while (status):
         if i.type == pygame.MOUSEBUTTONDOWN:
             is_clicked = True
             click_counter += 1
-            click_sound.play()
+            # click_sound.play()
 
-      ...
     #check starting position
     if start == True:
         screen.blit(load_bg, (0, 0))
@@ -188,20 +187,23 @@ while (status):
           textBox().draw_text(text)
          # else load text
         else:
-          choiceBtn = Button(s_width / 2 - 300, s_height / 2 - 5, tree.gameData[1][0])
+          # print(is_clicked)
+          choiceBtn = Button(s_width / 2 - 300, s_height / 2 - 3, tree.gameData[1][0])
           choiceBtn2 = Button(s_width / 2, s_height / 2, tree.gameData[1][1])
           if choiceBtn.draw_btn():
+            is_clicked = True
             tree = dialogueTree.search(tree.nextVal[0])
             text = ''
             load_bg = pygame.image.load(tree.gameData[3][0])
             toChoose = False
-            start = True
+            start = True  
           if choiceBtn2.draw_btn():
+            is_clicked = True
             tree = dialogueTree.search(tree.nextVal[1])
             newText = ''
             load_bg = pygame.image.load(tree.gameData[3][0])
             toChoose = False
-            awal = True       
+            start = True       
         # then quitting the pygame
         # and program both.
       
