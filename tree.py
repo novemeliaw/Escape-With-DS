@@ -1,37 +1,38 @@
 class Node:
-    def __init__(self, value, text: list, choice: list, nextVal : list) -> None:
+    def __init__(self, value, text: list, choice: list, nextVal : list, asset : list):
         self.data = value
         self.gameData = []
         self.gameData.append(text)
         self.gameData.append(choice)
         self.gameData.append(nextVal)
+        self.gameData.append(asset)
         self.left = None
         self.right = None
 
 class BinaryTree:
-    def __init__(self) -> None:
+    def __init__(self):
         # Merupakan kepala paling atas
         self.root = None
 
-    def insert(self, value, text, choice, nextValue):
-        #check if root is empty
-        if self.root == None :
-            self.root = Node
-        else :
-            self.root = DFS(self.root, value)
-        
+    def insert(self, value, text, choice, nextValue, asset):
         #traverse
-        def DFS(curr, value):
+        def DFS(curr, value, text, choice, nextValue, asset):
             if curr == None:
-                return Node(value)
-
+                return Node(value, text, choice, nextValue, asset)
+            # print(curr.data)
             #insert left
             if value < curr.data :
-                curr.left = DFS(curr.left, value)
+                curr.left = DFS(curr.left, value, text, choice, nextValue, asset)
             #insert right
             elif value > curr.data:
-                curr.right = DFS(curr.right, value)
+                curr.right = DFS(curr.right, value, text, choice, nextValue, asset)
             return curr
+
+        #check if root is empty
+        if self.root == None :
+            self.root = Node(value, text, choice, nextValue, asset)
+        else :
+            self.root = DFS(self.root, value, text, choice, nextValue, asset)
         
 
     def search(self, value):
@@ -54,6 +55,59 @@ class BinaryTree:
 
         if self.right:
             self.right.printIn()
+
+    def print_tree(self, val="data", left="left", right="right"):
+        def display(root, val=val, left=left, right=right):
+            """Returns list of strings, width, height, and horizontal coordinate of the root."""
+            # No child.
+            if getattr(root, right) is None and getattr(root, left) is None:
+                line = '%s' % getattr(root, val)
+                width = len(line)
+                height = 1
+                middle = width // 2
+                return [line], width, height, middle
+
+            # Only left child.
+            if getattr(root, right) is None:
+                lines, n, p, x = display(getattr(root, left))
+                s = '%s' % getattr(root, val)
+                u = len(s)
+                first_line = (x + 1) * ' ' + (n - x - 1) * '_' + s
+                second_line = x * ' ' + '/' + (n - x - 1 + u) * ' '
+                shifted_lines = [line + u * ' ' for line in lines]
+                return [first_line, second_line] + shifted_lines, n + u, p + 2, n + u // 2
+
+            # Only right child.
+            if getattr(root, left) is None:
+                lines, n, p, x = display(getattr(root, right))
+                s = '%s' % getattr(root, val)
+                u = len(s)
+                first_line = s + x * '_' + (n - x) * ' '
+                second_line = (u + x) * ' ' + '\\' + (n - x - 1) * ' '
+                shifted_lines = [u * ' ' + line for line in lines]
+                return [first_line, second_line] + shifted_lines, n + u, p + 2, u // 2
+
+            # Two children.
+            left, n, p, x = display(getattr(root, left))
+            right, m, q, y = display(getattr(root, right))
+            s = '%s' % getattr(root, val)
+            u = len(s)
+            first_line = (x + 1) * ' ' + (n - x - 1) * \
+                '_' + s + y * '_' + (m - y) * ' '
+            second_line = x * ' ' + '/' + \
+                (n - x - 1 + u + y) * ' ' + '\\' + (m - y - 1) * ' '
+            if p < q:
+                left += [n * ' '] * (q - p)
+            elif q < p:
+                right += [m * ' '] * (p - q)
+            zipped_lines = zip(left, right)
+            lines = [first_line, second_line] + \
+                [a + u * ' ' + b for a, b in zipped_lines]
+            return lines, n + m + u, max(p, q) + 2, n + u // 2
+
+        lines, *_ = display(self.root, val, left, right)
+        for line in lines:
+            print(line)
 
 dialogueTree = BinaryTree()
 # Root
@@ -518,15 +572,14 @@ choice = ['Queue', 'Stack']
 nextVal = [34]
 dialogueTree.insert(234,text,choice,nextVal, asset)
 
-
 #Binary Tree 250
-asset = ['sema-semak.png', 'prince2.png']
+asset = ['semak-semak.png', 'prince2.png']
 text = ['Hoi, sudah kubilang jangan bermain" dengan diriku, sekarang rasakan akibatnya.']
 choice = []
 nextVal = []
 dialogueTree.insert(250,text,choice,nextVal, asset)
 
 
-dialogueTree.printIn()
-
+# dialogueTree.printIn()
+dialogueTree.print_tree()
 
