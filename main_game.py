@@ -201,6 +201,8 @@ while (status):
             load_bg = pygame.image.load(tree.gameData[3][0])
             toChoose = False
             start = True  
+            screen.blit(load_bg,(0,0))
+
           if choiceBtn2.draw_btn():
             is_clicked = True
             tree = dialogueTree.search(tree.gameData[2][1])
