@@ -86,9 +86,13 @@ class Button:
         if pygame.mouse.get_pressed()[0] and pygame.mouse.get_pos():
           is_clicked = True
           pygame.draw.rect(screen, self.click_btn, btn_rect)
+          # return is_clicked
+          # start = True
+          # toChoose = False
         else : 
           is_clicked = False
           pygame.draw.rect(screen, self.hover_btn, btn_rect)
+          # return is_clicked
       else : 
         pygame.draw.rect(screen, self.btn, btn_rect)
 
@@ -96,14 +100,14 @@ class Button:
       text_btn = textbtn.render(self.text, 1, (0, 0, 0))
       text_len = text_btn.get_width()
       screen.blit(text_btn, ((self.x + int(self.width/2) - int(text_len / 2), self.y + 2)))
-      return action
+      return is_clicked
 
 
 
 # load_bg = pygame.transform.scale(bg,(509,339))
 
 tree = dialogueTree.root
-load_bg = pygame.image.load('Assets SD/Background/rumah kosong pertama diculik.jpg')
+load_bg = pygame.image.load('Background/rumah kosong pertama diculik.jpg')
 
 
 start = True
@@ -191,15 +195,15 @@ while (status):
           choiceBtn = Button(s_width / 2 - 300, s_height / 2 - 3, tree.gameData[1][0])
           choiceBtn2 = Button(s_width / 2, s_height / 2, tree.gameData[1][1])
           if choiceBtn.draw_btn():
-            is_clicked = True
-            tree = dialogueTree.search(tree.nextVal[0])
+            
+            tree = dialogueTree.search(tree.gameData[2][0])
             text = ''
             load_bg = pygame.image.load(tree.gameData[3][0])
             toChoose = False
             start = True  
           if choiceBtn2.draw_btn():
             is_clicked = True
-            tree = dialogueTree.search(tree.nextVal[1])
+            tree = dialogueTree.search(tree.gameData[2][1])
             newText = ''
             load_bg = pygame.image.load(tree.gameData[3][0])
             toChoose = False
