@@ -243,7 +243,7 @@ nextVal = [42,  58]
 dialogueTree.insert(50,text,choice,nextVal, asset)
 
 #Binary Tree 58
-asset = ['Character/prince2.png', 'Background/black panther.jpg']
+asset = ['Background/black panther.jpg','Character/prince2.png']
 text = ['']
 choice = ['Circular', 'Double']
 nextVal = [54, 62]
@@ -257,7 +257,7 @@ nextVal = [52, 56]
 dialogueTree.insert(54,text,choice,nextVal, asset)
 
 #Binary Tree 42
-asset = ['blackpanther.jpg','Character/prince2.png']
+asset = ['Background/black panther.jpg','Character/prince2.png']
 text = ['']
 choice = ['Single', 'Linear']
 nextVal = [38,  46]
