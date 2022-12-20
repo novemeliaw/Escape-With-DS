@@ -153,13 +153,13 @@ while (status):
 
     # start = False
     if toChoose == True:
-        narasi = tree.gameData[0][counter]
-        print(narasi)
-        for i in range (len(tree.gameData[0])):
-              text = tree.gameData[0][i]
-              # counter += 
-              print(narasi)
-              dialog_box.draw_narasi(text)
+        # narasi = tree.gameData[0][counter]
+        # print(narasi)
+        # for i in range (len(tree.gameData[0])):
+        #       text = tree.gameData[0][i]
+        #       # counter += 
+        #       print(narasi)
+        #       dialog_box.draw_narasi(text)
         # if counter != len(tree.gameData[0])  and toChoose == False:
         #       text = tree.gameData[0][counter]
         #       diaText = textfont.render(text,1,(255,255,255))
@@ -170,31 +170,38 @@ while (status):
         #       toChoose = True
         # check if node = none (end)
         # try : 
-        if tree.gameData[2][0] == None:
+        if tree.nextVal == [0,0] :
           text = "Game Over"
           textBox().draw_text(text)
         # else load text
         else:
           # print(is_clicked)
-            choiceBtn = Button(s_width / 2 - 300, s_height / 2 - 3, tree.gameData[1][0])
-            choiceBtn2 = Button(s_width / 2, s_height / 2, tree.gameData[1][1])
+            choiceBtn = Button(s_width / 2 - 300, s_height / 2 - 3, tree.choice[0])
+            choiceBtn2 = Button(s_width / 2, s_height / 2, tree.choice[1])
             
             if choiceBtn.draw_btn():
               # print(choiceBtn.draw_btn)
-              tree = dialogueTree.search(tree.gameData[2][0])
+              tree = dialogueTree.search(tree.nextVal[0])
               text = ''
-              load_bg = pygame.image.load(tree.gameData[3][0])
+              narasi = []
+              for i in tree.text :
+                narasi.append(i)
+              load_bg = pygame.image.load(tree.asset[0])
               toChoose = False
               start = True  
               screen.blit(load_bg,(0,0))
 
             if choiceBtn2.draw_btn():
               is_clicked = True
-              tree = dialogueTree.search(tree.gameData[2][1])
+              tree = dialogueTree.search(tree.nextVal[1])
               text = ''
-              load_bg = pygame.image.load(tree.gameData[3][0])
+              narasi = []
+              for i in tree.text :
+                narasi.append(i)
+              load_bg = pygame.image.load(tree.asset[0])
               toChoose = False
               start = True  
+              screen.blit(load_bg,(0,0))
         # except IndexError :     
             # end = True
         # then quitting the pygame
