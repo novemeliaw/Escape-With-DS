@@ -61,7 +61,7 @@ class Game:
 
      #Title & Icon
      pygame.display.set_caption("ESCAPE WITH DS")
-     icon = pygame.image.load('ds scratch 2.png')
+     icon = pygame.image.load('ds-icon.png')
      pygame.display.set_icon(icon)
 
      self.counter = 0
@@ -88,13 +88,13 @@ class Game:
     self.charas = []
     self.narasi = self.tree.text
 
-    for i in self.tree.asset:
+    for path in self.tree.asset:
       #check if bg & set bg
-      if "Background" in i :
-        self.bg = pygame.image.load(i)
+      if "Background" in path :
+        self.bg = pygame.image.load(path)
       else:
         #set as chara
-        self.charas.append(Charas(i))
+        self.charas.append(Charas(path))
 
   #check clicked
   def click_down(self):
