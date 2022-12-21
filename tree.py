@@ -166,7 +166,7 @@ nextVal = [0, 0]
 dialogueTree.insert(8,text,choice,nextVal, asset)
 
 #Binary Tree 14
-asset = ['Background/kerajaan di kejauhan.jpg', 'Character/prince2.png', 'ds scratch 2.png']
+asset = ['Background/kerajaan di kejauhan.jpg', 'Character/prince2.png', 'ds-icon.png']
 text = ['Aku mendapatkan digit kedua dalam perjalanan ini!', 'Selamat, kamu sudah berhasil mengumpulkan semua digit yang diperlukan!', 'Ayo kita berjalan lagi, jalan ini sudah dekat dengan kerajaanku!']
 choice = ['', '']
 nextVal = [12,16]
