@@ -151,7 +151,7 @@ class Game:
         else:
           #narration
           self.draw_text(self.narasi[self.counter])
-        pygame.display.update()
+      pygame.display.update()
 
   #render screen etc
   def main(self):
