@@ -1,170 +1,156 @@
 import pygame
-import tree as tr
-from pygame import Rect
-import os #for path
+import tree
+import os
 
 class Button:
-    def __init__(self, x, y, text, font:pygame.font.Font, width = 160, height= 90, on_click = None):
-       self.rect = pygame.Rect(0,0,width,height)
-       self.rect.center = (x,y)
-
-       self.text = font.render(text, 1, (0,0,0))
-       self.text_rect = self.text.get_rect()
-       self.text_rect.center = (x,y)
-       #set rect size & center
-       self.rect = self.text_rect.inflate(20,20)
-       self.rect.center = self.text_rect.center
-
-       #clicky stuff
-       self.hover_clr =(224, 252, 164)
-       self.clicked_clr = (188, 255, 71)
-       self.is_clicked = False
-       self.on_click = on_click
-
-    def draw_btn(self, surf: pygame.Surface):
-      if self.is_clicked == True :
-        pygame.draw.rect(surf, self.clicked_clr, self.rect)
-      else:
-        pygame.draw.rect(surf, self.hover_clr, self.rect)
-      surf.blit(self.text, self.text_rect)
+    # Button class
+    def __init__(self, x, y, font: pygame.font.Font, text, width=160, height=90, on_click=lambda: None):
+        self.rect = pygame.Rect(0, 0, width, height)
+        self.rect.center = (x, y)
+        
+        self.text = font.render(text, 1, (0, 0, 0))
+        self.text_rect = self.text.get_rect()
+        self.text_rect.center = (x, y)
+        self.rect = self.text_rect.inflate(20, 20)
+        self.rect.center = self.text_rect.center
+        
+        self.idle_color = (255, 255, 255)
+        self.clicked_color = (127, 127, 127)
+        self.is_clicked = False
+        self.on_click = on_click
+    
+    def draw_btn(self, surface: pygame.Surface):
+        if self.is_clicked:
+            pygame.draw.rect(surface, self.clicked_color, self.rect)
+        else:
+            pygame.draw.rect(surface, self.idle_color, self.rect)
+        surface.blit(self.text, self.text_rect)
 
     def click(self):
-      self.is_clicked = not self.is_clicked
-      self.on_click()
-
-    def notClick(self):
-      self.is_clicked = False
+        self.is_clicked = not self.is_clicked
+        self.on_click()
+    
+    def unclick(self):
+        self.is_clicked = False
 
 class Charas:
-      def __init__(self, path):
-         self.image = pygame.image.load(path)
+    def __init__(self, path):
+        self.image = pygame.image.load(path)
+    
+    def draw(self, surface: pygame.Surface, x: int, y: int):
+        surface.blit(self.image, (x, y))
 
-      def draw_charas(self, surf: pygame.Surface, x:int, y:int):
-          surf.blit(self.image, (x,y))
-
-#main game
 class Game:
-  pygame.init()
-  pygame.mixer.init()
+    pygame.init()
+    pygame.mixer.init()
+    width = 1280
+    height = 720
+    center = (width // 2, height // 2)
+    dialog = tree.dialogueTree.root
+    path = os.path.dirname(__file__)
+    font = pygame.font.SysFont("monospace", 30)
+    
 
-  #set screen
-  s_width = 1280
-  s_height = 720
-  center = (s_width // 2, s_height // 2)
+    def __init__(self):
+        self.screen = pygame.display.set_mode((self.width, self.height))
 
-  tree = tr.dialogueTree.root
-  path = os.path.dirname(__file__)
-  font = pygame.font.SysFont("monospace", 30)
-
-  def __init__(self) :
-     self.screen = pygame.display.set_mode((self.s_width, self.s_height))
-
-     #Title & Icon
-     pygame.display.set_caption("ESCAPE WITH DS")
-     icon = pygame.image.load('ds-icon.png')
-     pygame.display.set_icon(icon)
-
-     self.counter = 0
-
-     self.btns: list[Button] = []
-     self.charas : list[Charas] = []
-     self.load_dialog()
-
-  def draw_text(self, text):
-    text = self.font.render(text,1,(255, 255, 255))
-    text_rect = text.get_rect()
-    text_box = text.rect.inflate(70,70)
-    text_box.center = self.s_width // 2
-    text_box.bottom = self.s_height
-    text_rect.center = text_box.center
-    pygame.draw.rect(self.screen, pygame.Color(127, 127, 127), text_box)
-    self.screen.blit(text, text_rect)
-
-  def setBGM(self, audio):
-    pygame.mixer.music.load(audio)
-    pygame.mixer.music.play(-1)
-
-  def load_dialog(self):
-    self.charas = []
-    self.narasi = self.tree.text
-
-    for path in self.tree.asset:
-      #check if bg & set bg
-      if "Background" in path :
-        self.bg = pygame.image.load(path)
-      else:
-        #set as chara
-        self.charas.append(Charas(path))
-
-  #check clicked
-  def click_down(self):
-    if self.btns == True:
-      pos = pygame.mouse.get_pos()
-      if self.btns[0].rect.collidepoint(pos):
-        self.btns[0].click()
-        self.tree = self.tree.left
-      if self.btns[1].rect.collidepoint(pos):
-        self.btns[1].click()
-        self.tree = self.tree.right
-
-  def click_up(self):
-    for i in self.btns:
-      if i.is_clicked:
-        i.notClick()
-        self.load_dialog()
+        #set icon & caption app
+        pygame.display.set_caption("ESCAPE WITH DS")
+        icon = pygame.image.load("ds-icon.png")
+        pygame.display.set_icon(icon)
+        
         self.counter = 0
-        self.btns = []
-        break
-  
-  #pygame event
-  def event(self):
-    for i in pygame.event.get():
-      if i.type == pygame.QUIT:
-        return False
+        # self.setBGM(self.path + "/Audio Asset/Eerie_BGM.mp3")
+        self.buttons: list[Button] = []
+        self.sprites: list[Charas] = []
+        self.load_dialog()
+    
+    def draw_text(self, text, color=(255, 255, 255)):
+        text = self.font.render(text, 1, color)
+        text_rect = text.get_rect()
+        text_box = text_rect.inflate(70, 70)
+        text_box.centerx = self.width // 2
+        text_box.bottom = self.height
+        text_rect.center = text_box.center
+        pygame.draw.rect(self.screen, pygame.Color(127, 127, 127), text_box)
+        self.screen.blit(text, text_rect)
+    
+    def setBGM(self, audio):
+        pygame.mixer.music.load(audio)
+        pygame.mixer.music.play(-1)
+    
+    def load_dialog(self):
+        self.charas = []
+        self.narasi = self.dialog.text
+        for path in self.dialog.asset:
+            if "Background" in path:
+                self.background = pygame.image.load(path)
+            else:
+                self.charas.append(Charas(path))
 
-      elif i.type == pygame.MOUSEBUTTONDOWN:
-        self.click_down()
-        if self.tree == None:
-          return False
-
-      elif i.type == pygame.MOUSEBUTTONUP:
-        self.click_up()
-
-    return True
-
-  def choices_btn(self):
-    if any(self.tree.choice):
-      left = Button(self.s_width*1 // 4, self.s_height // 2, self.font, self.tree.choice[0])
-      right = Button(self.s_width*3 // 4, self.s_height // 2, self.font, self.tree.choice[1])
-      self.btns = [left,right]
-    else:
-      self.tree = None
-
-  def render_scrn(self):
-      self.screen.fill((0,0,0))
-      self.screen.blit(self.bg, (0,0))
-
-      for i, chara in enumerate(self.charas):
-        chara.draw_charas(self.screen, self.s_width * i // len(self.charas), self.s_height // 3)
-        if self.btns:
-          [btn.draw(self.screen) for btn in self.btns]
+    def click_down(self):
+        # self.click_sound.play()
+        if self.buttons:
+            pos = pygame.mouse.get_pos()
+            if self.buttons[0].rect.collidepoint(pos):
+                self.buttons[0].click()
+                self.dialog = self.dialog.left
+            if self.buttons[1].rect.collidepoint(pos):
+                self.buttons[1].click()
+                self.dialog = self.dialog.right
         else:
-          #narration
-          self.draw_text(self.narasi[self.counter])
-      pygame.display.update()
+            self.counter += 1
+            if self.counter >= len(self.narasi):
+                self.create_choices()
+    
+    def click_up(self):
+        for button in self.buttons:
+            if button.is_clicked:
+                button.unclick()
+                self.load_dialog()
+                self.counter = 0
+                self.buttons = []
+                break
 
-  #render screen etc
-  def main(self):
-    status = True
-    while status:
-      pygame.time.Clock().tick(60)
+    def event(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return False
+            
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                self.click_down()
+                if self.dialog == None:
+                    return False
+            elif event.type == pygame.MOUSEBUTTONUP:
+                self.click_up()
+        return True
+    
+    def create_choices(self):
+        if any(self.dialog.choice):
+            left = Button(self.width * 1 // 4, self.height // 2, self.font, self.dialog.choice[0])
+            right = Button(self.width * 3 // 4, self.height // 2, self.font, self.dialog.choice[1])
+            self.buttons = [left, right]
+        else:
+            self.dialog = None
 
-      self.render_scrn()
-      status = self.event()
+    def main(self):
+        status = True
+        while status:
+            pygame.time.Clock().tick(60)
 
-    #end game
-    pygame.display.quit()
-    pygame.quit()
-
+            self.screen.fill((0, 0, 0)) # clear screen
+            self.screen.blit(self.background, (0, 0))   # renders background
+            for i, chara in enumerate(self.charas):
+                chara.draw(self.screen, self.width * i // len(self.charas), self.height // 3)
+            if self.buttons:
+            # renders buttons if on a choice screen
+                [button.draw_btn(self.screen) for button in self.buttons]
+            else:
+            # renders narration
+                self.draw_text(self.narasi[self.counter])
+            pygame.display.update()
+            status = self.event()
+        pygame.display.quit()
+        pygame.quit()
 
 Game().main()
