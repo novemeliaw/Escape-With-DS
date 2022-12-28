@@ -117,14 +117,14 @@ nextVal = [66,  194]
 dialogueTree.insert(130,text,choice,nextVal, asset)
 
 #Binary Tree 66
-asset = ['Background/hutan siang.jpg', 'Character/prince2.png', 'ds-icon.png']
+asset = ['Background/hutan siang.jpg', 'Character/prince2.png', 'Character/ds-icon.png']
 text = ['Apa ini?', 'Halo Halo Loha, aku DS, yang akan menemani mu di perjalanan ini.', 'Kamu kenapa bisa ada disini?', 'Aku diciptakan untuk membantu mereka yang tersesat di hutan ini.', 'Baiklah.', 'Struktur data yang menyimpan elemen dengan konsep fifo']
 choice = ['Queue', 'Stack']
 nextVal = [34,  98]
 dialogueTree.insert(66,text,choice,nextVal, asset)
 
 #Binary Tree 34
-asset = ['Background/hutan siang.jpg', 'Character/prince2.png', 'ds-icon.png']
+asset = ['Background/hutan siang.jpg', 'Character/prince2.png', 'Character/ds-icon.png']
 text = ['Lihat!!! Aku berhasil mendapatkan 1 digit.', 'Selamat, kamu hanya perlu mencari 1 digit lagi.', 'Aku tidak sabar untuk segera pulang', 'mari kita lanjutkan perjalanan ini.', 'Integer merupakan tipe data apa?']
 choice = ['Tunggal', ' Majemuk']
 nextVal = [18,  50]
@@ -145,7 +145,7 @@ nextVal = [4,  8]
 dialogueTree.insert(10,text,choice,nextVal, asset)
 
 #Binary Tree 6
-asset = ['Background/kerajaan di kejauhan.jpg', 'Character/prince2.png', ' ds-icon.png']
+asset = ['Background/kerajaan di kejauhan.jpg', 'Character/prince2.png', ' Character/ds-icon.png']
 text = ['Aku mendapatkan digit kedua dalam perjalanan ini!', 'Selamat, kamu sudah berhasil mengumpulkan semua digit yang diperlukan!', 'Ayo kita berjalan lagi, jalan ini sudah dekat dengan kerajaanku!']
 choice = ['Lanjut','']
 nextVal = [4,0]
@@ -166,7 +166,7 @@ nextVal = [0, 0]
 dialogueTree.insert(8,text,choice,nextVal, asset)
 
 #Binary Tree 14
-asset = ['Background/kerajaan di kejauhan.jpg', 'Character/prince2.png', 'ds-icon.png']
+asset = ['Background/kerajaan di kejauhan.jpg', 'Character/prince2.png', 'Character/ds-icon.png']
 text = ['Aku mendapatkan digit kedua dalam perjalanan ini!', 'Selamat, kamu sudah berhasil mengumpulkan semua digit yang diperlukan!', 'Ayo kita berjalan lagi, jalan ini sudah dekat dengan kerajaanku!']
 choice = ['', '']
 nextVal = [12,16]
@@ -285,7 +285,7 @@ nextVal = [0, 0]
 dialogueTree.insert(40,text,choice,nextVal, asset)
 
 #Binary Tree 46
-asset = ['Background/kerajaan di kejauhan.jpg', 'Character/prince2.png', 'ds-icon.png']
+asset = ['Background/kerajaan di kejauhan.jpg', 'Character/prince2.png', 'Character/ds-icon.png']
 text = ['Aku mendapatkan digit kedua dalam perjalanan ini!', 'Selamat, kamu sudah berhasil mengumpulkan semua digit yang diperlukan!', 'Ayo kita berjalan lagi, jalan ini sudah dekat dengan kerajaanku!']
 choice = ['', '']
 nextVal = [44,48]
@@ -377,7 +377,7 @@ nextVal = [0, 0]
 dialogueTree.insert(64,text,choice,nextVal, asset)
 
 #Binary Tree 98
-asset = ['Background/hutan siang.jpg','Character/prince2.png', 'ds-icon.png']
+asset = ['Background/hutan siang.jpg','Character/prince2.png', 'Character/ds-icon.png']
 text = ['Lihat!! Aku berhasil mendapatkan 1 digit.', 'Selamat! kamu hanya perlu mencari 1 digit lagi.', 'Aku tidak sabar untuk segera pulang', 'mari kita lanjutkan perjalanan ini.', 'Integer merupakan tipe data apa?']
 choice = ['Tunggal', 'Majemuk']
 nextVal = [82, 114]
@@ -544,7 +544,7 @@ nextVal = [162,  226]
 dialogueTree.insert(194,text,choice,nextVal, asset)
 
 #Binary Tree 162
-asset = ['Background/hutan siang.jpg', 'Character/prince2.png', 'ds-icon.png']
+asset = ['Background/hutan siang.jpg', 'Character/prince2.png', 'Character/ds-icon.png']
 text = ['Apa ini?', 'Halo Halo Loha, aku DS, yang akan menemani mu di perjalanan ini.', 'Kamu kenapa bisa ada disini?', 'Aku diciptakan untuk membantu orang” yang tersesat di hutan ini.', 'Baiklah.']
 choice = ['Queue', 'Stack']
 nextVal = [34,  98]
@@ -558,7 +558,7 @@ nextVal = [210,  242]
 dialogueTree.insert(226,text,choice,nextVal, asset)
 
 #Binary Tree 210
-asset = ['Background/hutan siang.jpg', 'Character/prince2.png', 'ds-icon.png']
+asset = ['Background/hutan siang.jpg', 'Character/prince2.png', 'Character/ds-icon.png']
 text = ['Apa ini?', 'Halo Halo Loha, aku DS, yang akan menemani mu di perjalanan ini.', 'Kamu kenapa bisa ada disini?', 'Aku diciptakan untuk membantu orang” yang tersesat di hutan ini.', 'Baiklah.']
 choice = ['Queue','Stack']
 nextVal = [34, 98]

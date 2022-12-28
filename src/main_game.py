@@ -1,5 +1,5 @@
 import pygame
-import tree
+import tree as tree
 import os
 
 class Button:
@@ -56,7 +56,7 @@ class Game:
 
         #set icon & caption app
         pygame.display.set_caption("ESCAPE WITH DS")
-        icon = pygame.image.load("ds-icon.png")
+        icon = pygame.image.load("Character\ds-icon.png")
         pygame.display.set_icon(icon)
         
         self.counter = 0
