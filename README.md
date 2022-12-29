@@ -8,7 +8,7 @@ Story Game dengan Implementasi Binary Tree
 - Florentina Audrina - C14210225
 
 ## Demo / Teaser Video
-[Link Youtube / Drive](https://drive.google.com/file/d/13Pa5HP2bz-gpA7bZzS4qkLXKZPhlfCwI/view?usp=sharing)
+[Link Youtube](https://youtu.be/KBGzXNRMyr4)
 
 
 
